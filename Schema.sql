@@ -56,14 +56,14 @@ CREATE TABLE "Titles" (
      )
 );
 
+ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
+REFERENCES "Employees" ("emp_no");
+
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_no" FOREIGN KEY("dept_no")
 REFERENCES "Departments" ("dept_no");
 
-ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_emp_no" FOREIGN KEY("emp_no")
-REFERENCES "dept_emp" ("emp_no");
-
-ALTER TABLE "Employees" ADD CONSTRAINT "fk_Employees_emp_no" FOREIGN KEY("emp_no")
-REFERENCES "dept_emp" ("emp_no");
+ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_dept_no_emp_no" FOREIGN KEY("dept_no", "emp_no")
+REFERENCES "dept_emp" ("dept_no", "emp_no");
 
 ALTER TABLE "Employees" ADD CONSTRAINT "fk_Employees_emp_title_id" FOREIGN KEY("emp_title_id")
 REFERENCES "Titles" ("title_id");
